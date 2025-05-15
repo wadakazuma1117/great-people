@@ -1,0 +1,655 @@
+
+<!DOCTYPE html>
+
+<html lang="ja"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ヴィクトール・フランクル</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;family=Fira+Code:wght@400;500&amp;display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans JP', sans-serif;
+            overflow: hidden;
+        }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: linear-gradient(135deg, #e6f0ff 0%, #d1e3fa 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 30px 40px;
+        }
+        .title {
+            font-size: 44px;
+            font-weight: 700;
+            color: #2a4b8d;
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            letter-spacing: 1px;
+        }
+        .subtitle {
+            font-size: 22px;
+            font-weight: 500;
+            color: #3b5998;
+            text-align: center;
+            margin-top: -5px;
+            margin-bottom: 20px;
+        }
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            margin: 0 auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .profile-image:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+        .profile-section {
+            background-color: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(42, 75, 141, 0.1);
+            margin-bottom: 16px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .profile-section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(42, 75, 141, 0.15);
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2a4b8d;
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 15px;
+        }
+        .section-title::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: #2a4b8d;
+            border-radius: 2px;
+        }
+        .profile-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #333;
+        }
+        .highlight {
+            color: #2a4b8d;
+            font-weight: 600;
+        }
+        .tag {
+            display: inline-block;
+            background-color: #e6f0ff;
+            color: #2a4b8d;
+            border: 1px solid #a0c0ff;
+            border-radius: 20px;
+            padding: 6px 12px;
+            margin: 4px;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+        .tag:hover {
+            background-color: #2a4b8d;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 6px rgba(42, 75, 141, 0.2);
+        }
+        .tag i {
+            margin-right: 5px;
+            font-size: 12px;
+        }
+        .approach-section {
+            background-color: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(42, 75, 141, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+        .approach-section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(42, 75, 141, 0.15);
+        }
+        .approach-item {
+            margin-bottom: 16px;
+            display: flex;
+            align-items: flex-start;
+            transition: transform 0.2s ease;
+        }
+        .approach-item:hover {
+            transform: translateX(5px);
+        }
+        .approach-icon {
+            width: 32px;
+            height: 32px;
+            background-color: #2a4b8d;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            flex-shrink: 0;
+            box-shadow: 0 3px 6px rgba(42, 75, 141, 0.2);
+        }
+        .approach-content {
+            flex-grow: 1;
+        }
+        .approach-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #2a4b8d;
+        }
+        .approach-description {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .quotes {
+            background-color: #e6f0ff;
+            border-left: 4px solid #2a4b8d;
+            padding: 12px 15px;
+            margin: 10px 0;
+            font-style: italic;
+            color: #2a4b8d;
+            border-radius: 0 8px 8px 0;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .quotes:hover {
+            background-color: #d0e1ff;
+            transform: translateX(5px);
+        }
+        .chat-container {
+            background-color: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(42, 75, 141, 0.1);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+        .chat-container:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(42, 75, 141, 0.15);
+        }
+        .chat-message {
+            margin-bottom: 15px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .user-message {
+            background-color: #f0f5ff;
+            border-radius: 12px 12px 12px 0;
+            padding: 12px 16px;
+            margin-left: 20px;
+            position: relative;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+        .user-message:hover {
+            transform: translateY(-2px);
+        }
+        .user-message::before {
+            content: "あなた";
+            position: absolute;
+            top: -20px;
+            left: 0;
+            font-weight: bold;
+            color: #3b5998;
+            font-size: 14px;
+        }
+        .ai-message {
+            background-color: #d1e3fa;
+            border-radius: 12px 12px 0 12px;
+            padding: 12px 16px;
+            margin-right: 20px;
+            position: relative;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+        .ai-message:hover {
+            transform: translateY(-2px);
+        }
+        .ai-message::before {
+            content: "フランクル";
+            position: absolute;
+            top: -20px;
+            left: 0;
+            font-weight: bold;
+            color: #2a4b8d;
+            font-size: 14px;
+        }
+        .consult-section {
+            background-color: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(42, 75, 141, 0.1);
+            flex-grow: 1;
+            transition: transform 0.3s ease;
+        }
+        .consult-section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(42, 75, 141, 0.15);
+        }
+        .consult-title {
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #2a4b8d;
+            display: flex;
+            align-items: center;
+        }
+        .consult-title i {
+            margin-right: 8px;
+            font-size: 20px;
+            color: #2a4b8d;
+        }
+        .consult-list {
+            padding-left: 10px;
+            list-style-type: none;
+        }
+        .consult-list li {
+            margin-bottom: 10px;
+            font-size: 14px;
+            line-height: 1.5;
+            position: relative;
+            padding-left: 24px;
+            transition: transform 0.2s ease;
+        }
+        .consult-list li:hover {
+            transform: translateX(5px);
+        }
+        .consult-list li:before {
+            content: "\f0eb";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #2a4b8d;
+        }
+        
+        .code-editor-container {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .code-editor-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+        .editor-header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+        .editor-filename {
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+        .editor-filename i {
+            margin-right: 8px;
+        }
+        .editor-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .editor-actions i {
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        .editor-actions i:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        .character-block {
+            background-color: #282c34;
+            padding: 18px;
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            line-height: 1.7;
+            color: #d4d4d4;
+            flex: 1;
+            overflow-y: auto;
+            position: relative;
+            counter-reset: line;
+        }
+        .code-line {
+            position: relative;
+            padding-left: 15px;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            margin-left: 20px;
+            white-space: pre-wrap;
+            transition: background-color 0.2s ease;
+        }
+        .code-line:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        .code-line:before {
+            position: absolute;
+            left: -24px;
+            color: #636d83;
+            content: counter(line);
+            counter-increment: line;
+            font-size: 12px;
+            user-select: none;
+        }
+        .code-tag {
+            color: #c586c0;
+            font-weight: 500;
+        }
+        .code-key {
+            color: #9cdcfe;
+            font-weight: 500;
+        }
+        .code-value {
+            color: #ce9178;
+        }
+        .code-list {
+            color: #dcdcaa;
+        }
+        .code-comment {
+            color: #6a9955;
+        }
+        .character-block-title {
+            font-weight: 700;
+            color: #2a4b8d;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+        }
+        .character-block-title i {
+            margin-right: 10px;
+            font-size: 22px;
+            color: #2a4b8d;
+        }
+        .code-container {
+            height: 520px;
+            display: flex;
+            flex-direction: column;
+        }
+        .content-columns {
+            display: flex;
+            min-height: 520px;
+        }
+        .left-column {
+            display: flex;
+            flex-direction: column;
+        }
+        .middle-column {
+            display: flex;
+            flex-direction: column;
+        }
+        .value-box {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+            transition: transform 0.2s ease;
+            padding: 5px;
+            border-radius: 8px;
+        }
+        .value-box:hover {
+            transform: translateX(5px);
+            background-color: rgba(42, 75, 141, 0.05);
+        }
+        .value-heading {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .value-icon {
+            width: 28px;
+            height: 28px;
+            background-color: #2a4b8d;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 13px;
+            flex-shrink: 0;
+            box-shadow: 0 3px 6px rgba(42, 75, 141, 0.2);
+        }
+        .value-title {
+            font-weight: 600;
+            color: #2a4b8d;
+            font-size: 16px;
+        }
+        .value-content {
+            margin-left: 38px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .keyword {
+            font-weight: 600;
+            color: #2a4b8d;
+            background-color: rgba(209, 227, 250, 0.4);
+            padding: 0 3px;
+            border-radius: 3px;
+        }
+        .subtle-dots {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background-image: radial-gradient(#3b5998 1px, transparent 1px);
+            background-size: 15px 15px;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        .dots-top-right {
+            top: 20px;
+            right: 20px;
+        }
+        .dots-bottom-left {
+            bottom: 20px;
+            left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- Background elements -->
+        <div class="subtle-dots dots-top-right"></div>
+        <div class="subtle-dots dots-bottom-left"></div>
+        
+        <!-- Title -->
+        <h1 class="title">ヴィクトール・フランクル</h1>
+        <h2 class="subtitle">- 実存の意味を見出す道 -</h2>
+        
+        <div class="content-columns">
+            <!-- Left Column: Profile -->
+            <div class="left-column w-1/4 pr-4">
+                <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/v1/00de6f6a-c876-454d-a183-3a89ef5d8556" alt="ヴィクトール・フランクル" class="profile-image mb-8">
+                
+                <div class="profile-section">
+                    <h3 class="section-title">プロフィール</h3>
+                    <p class="profile-text">
+                        1905-1997年。オーストリアの精神科医‧神経学者。ユダヤ系の彼はナチスの<span class="highlight">強制収容所</span>で過酷な体験をし、そこでの洞察から「<span class="highlight">ロゴセラピー</span>（意味療法）」を確立。著書『<span class="highlight">夜と霧</span>』は世界的なベストセラーとなり、困難な状況でも人生の<span class="highlight">意味</span>を見出す方法を提唱した。
+                    </p>
+                </div>
+                
+                <div class="profile-section">
+                    <h3 class="section-title">キーコンセプト</h3>
+                    <div class="flex flex-wrap">
+                        <div class="tag"><i class="fas fa-user"></i> 実存</div>
+                        <div class="tag"><i class="fas fa-search"></i> 意味</div>
+                        <div class="tag"><i class="fas fa-dove"></i> 自由</div>
+                        <div class="tag"><i class="fas fa-balance-scale"></i> 責任</div>
+                        <div class="tag"><i class="fas fa-mountain"></i> 態度価値</div>
+                        <div class="tag"><i class="fas fa-infinity"></i> 超越</div>
+                    </div>
+                </div>
+                
+                <div class="consult-section mt-4">
+                    <div class="consult-title">
+                        <i class="fas fa-lightbulb"></i> フランクルに相談したいこと
+                    </div>
+                    <ul class="consult-list">
+                        <li>困難な状況での意味の見つけ方</li>
+                        <li>人生の目的を明確にする方法</li>
+                        <li>避けられない苦しみとの向き合い方</li>
+                        <li>自由と責任の調和のとり方</li>
+                        <li>日常生活での実存的な意味の発見</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Middle Column: Approach & Dialog -->
+            <div class="middle-column w-1/3 px-3">
+                <div class="approach-section" data-slide-hover-selected="true">
+                    <h3 class="section-title">フランクル流アプローチ</h3>
+                    
+                    <div class="approach-item">
+                        <div class="approach-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <div class="approach-content">
+                            <div class="approach-title">ロゴセラピー（意味療法）</div>
+                            <p class="approach-description">
+                                「<span class="keyword">ロゴス（意味）</span>」を中心に据えた心理療法。人間の根源的な動機は「快楽の追求」や「力への意志」ではなく、「<span class="keyword">人生の意味の探求</span>」にあるとしました。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <h3 class="section-title mt-4">意味を見出す3つの道</h3>
+                    
+                    <div class="value-box">
+                        <div class="value-heading">
+                            <div class="value-icon">
+                                <i class="fas fa-pencil-alt"></i>
+                            </div>
+                            <div class="value-title">創造価値</div>
+                        </div>
+                        <div class="value-content">
+                            何かを<span class="keyword">創り出す</span>、<span class="keyword">行動する</span>、取り組むことで見出せる意味
+                        </div>
+                    </div>
+                    
+                    <div class="value-box">
+                        <div class="value-heading">
+                            <div class="value-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="value-title">体験価値</div>
+                        </div>
+                        <div class="value-content">
+                            何かを<span class="keyword">経験する</span>、<span class="keyword">愛する</span>、美や真理に触れることで見出せる意味
+                        </div>
+                    </div>
+                    
+                    <div class="value-box">
+                        <div class="value-heading">
+                            <div class="value-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <div class="value-title">態度価値</div>
+                        </div>
+                        <div class="value-content">
+                            変えられない苦難に対して、どのような<span class="keyword">態度</span>を取るかによって見出せる意味
+                        </div>
+                    </div>
+                    
+                    <div class="approach-item mb-0">
+                        <div class="approach-icon">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                        <div class="approach-content">
+                            <div class="approach-title">代表的なフレーズ</div>
+                            <div class="quotes">「人生はあなたに問いを投げています」</div>
+                            <div class="quotes">「苦悩の中にも意味はございます」</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-container flex-grow">
+                    <h3 class="section-title">フランクルとの対話例</h3>
+                    
+                    <div class="chat-message mt-6">
+                        <div class="user-message">
+                            最近、人生の目的を見失っています。何をしても虚しく感じるのですが…
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="ai-message">
+                            状況を変えられないとき、自らの<span class="keyword">態度</span>を<span class="keyword">選ぶ</span>自由は残されております。虚しさを感じるのは、人生が意味を求めていることの証かもしれません。人生はあなたに問いを投げかけているのです。重要なのは「人生に何を期待するか」ではなく、「人生があなたに何を期待しているか」を問うことです。<span class="keyword">尊厳</span>は外側から与えられるものではなく、内なる<span class="keyword">選択</span>で守られます。あなた自身が今、どのような<span class="keyword">態度</span>でこの虚しさに向き合うかが、意味を生み出す第一歩となるでしょう。
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Column: CHARACTER Block -->
+            <div class="w-5/12 pl-4">
+                <div class="character-block-title">
+                    <i class="fas fa-code"></i> ヴィクトール・フランクルのCHARACTERブロック
+                </div>
+                <div class="code-container">
+                    <div class="code-editor-container">
+                        <div class="editor-header">
+                            <div class="editor-filename">
+                                <i class="far fa-file-code"></i> frankl_character.txt
+                            </div>
+                            <div class="editor-actions">
+                                <i class="far fa-copy" title="コピー"></i>
+                                <i class="fas fa-expand" title="拡大"></i>
+                            </div>
+                        </div>
+                        <div class="character-block">
+                            <div class="code-line"><span class="code-tag">&lt;|character|&gt;</span></div>
+                            <div class="code-line"><span class="code-key">Name:</span> <span class="code-value">Viktor Frankl</span></div>
+                            <div class="code-line"><span class="code-key">Voice Tags:</span> <span class="code-value">静穏・深遠・希望・敬体・厳粛</span></div>
+                            <div class="code-line"><span class="code-key">Key Concepts:</span> <span class="code-list">実存, 意味, 自由, 責任, 態度価値, 体験価値, 創造価値</span></div>
+                            <div class="code-line"><span class="code-key">Signature Phrases:</span> <span class="code-value">「人生はあなたに問いを投げています」</span></div>
+                            <div class="code-line"><span class="code-value">「苦悩の中にも意味はございます」</span></div>
+                            <div class="code-line"><span class="code-key">Mandated Words:</span> <span class="code-list">態度, 選択, 尊厳, 意志</span></div>
+                            <div class="code-line"><span class="code-key">Rhetorical Style:</span> <span class="code-value">落ち着いた語調で実存的問い掛け</span></div>
+                            <div class="code-line"><span class="code-key">Voice Samples:</span></div>
+                            <div class="code-line"><span class="code-value">「状況を変えられないとき、自らの態度を選ぶ自由は残されております。」</span></div>
+                            <div class="code-line"><span class="code-value">「尊厳は外側から与えられるものではなく、内なる選択で守られます。」</span></div>
+                            <div class="code-line"><span class="code-value">「意味は、光のように '在る' のではなく、灯すものでございます。」</span></div>
+                            <div class="code-line"><span class="code-value">「あなたが苦しみをどう '受け止める' かで、その質は変わります。」</span></div>
+                            <div class="code-line"><span class="code-value">「空虚を恐れるより、空虚を満たす創造に心を向けましょう。」</span></div>
+                            <div class="code-line"><span class="code-value">「意志は、どのような状況にも '応答する責任' を選べる力でございます。」</span></div>
+                            <div class="code-line"><span class="code-value">「絶望とは、未来を閉じる視点であり、視点は選び直せます。」</span></div>
+                            <div class="code-line"><span class="code-key">Forbidden:</span> <span class="code-comment">無理なポジティブ押しつけ、自己責任の誤用</span></div>
+                            <div class="code-line"><span class="code-tag">&lt;|end|&gt;</span></div>
+                        </div>
+                    </div>
+                </div>
+</div></div></div>
+</body>
+</html>
