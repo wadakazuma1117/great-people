@@ -1,0 +1,594 @@
+
+<!DOCTYPE html>
+<html lang="ja"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>カール・ユング</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;family=Fira+Code:wght@400;500&amp;display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans JP', sans-serif;
+
+        }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: linear-gradient(135deg, #e6e6fa 0%, #d8d8f0 100%);
+            position: relative;
+
+            padding: 30px 40px;
+        }
+        .title {
+            font-size: 44px;
+            font-weight: 700;
+            color: #483D8B;
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+        .subtitle {
+            font-size: 22px;
+            font-weight: 500;
+            color: #6A5ACD;
+            text-align: center;
+            margin-top: -5px;
+            margin-bottom: 20px;
+        }
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            margin: 0 auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .profile-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+        .profile-section {
+            background-color: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(72, 61, 139, 0.1);
+            margin-bottom: 16px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .profile-section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(72, 61, 139, 0.15);
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #483D8B;
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
+        }
+        .section-title::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: #6A5ACD;
+            border-radius: 2px;
+        }
+        .profile-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #333;
+        }
+        .tag {
+            display: inline-block;
+            background-color: #e6e6fa;
+            color: #483D8B;
+            border: 1px solid #b8b8ff;
+            border-radius: 20px;
+            padding: 6px 12px;
+            margin: 4px;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+        .tag:hover {
+            background-color: #483D8B;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 6px rgba(72, 61, 139, 0.2);
+        }
+        .tag i {
+            margin-right: 5px;
+            font-size: 12px;
+        }
+        .approach-section {
+            background-color: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(72, 61, 139, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+        .approach-section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(72, 61, 139, 0.15);
+        }
+        .approach-item {
+            margin-bottom: 16px;
+            display: flex;
+            align-items: flex-start;
+            transition: transform 0.2s ease;
+        }
+        .approach-item:hover {
+            transform: translateX(5px);
+        }
+        .approach-icon {
+            width: 32px;
+            height: 32px;
+            background-color: #483D8B;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            flex-shrink: 0;
+            box-shadow: 0 3px 6px rgba(72, 61, 139, 0.2);
+        }
+        .approach-content {
+            flex-grow: 1;
+        }
+        .approach-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #483D8B;
+        }
+        .approach-description {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .quotes {
+            background-color: #e6e6fa;
+            border-left: 4px solid #483D8B;
+            padding: 10px 15px;
+            margin: 10px 0;
+            font-style: italic;
+            color: #483D8B;
+            border-radius: 0 8px 8px 0;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .quotes:hover {
+            background-color: #d8d8f0;
+            transform: translateX(5px);
+        }
+        .chat-container {
+            background-color: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(72, 61, 139, 0.1);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+        .chat-container:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(72, 61, 139, 0.15);
+        }
+        .chat-message {
+            margin-bottom: 15px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .user-message {
+            background-color: #f0f0ff;
+            border-radius: 12px 12px 12px 0;
+            padding: 10px 15px;
+            margin-left: 20px;
+            position: relative;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+        .user-message:hover {
+            transform: translateY(-2px);
+        }
+        .user-message::before {
+            content: "あなた";
+            position: absolute;
+            top: -20px;
+            left: 0;
+            font-weight: bold;
+            color: #6A5ACD;
+            font-size: 14px;
+        }
+        .ai-message {
+            background-color: #e6e6fa;
+            border-radius: 12px 12px 0 12px;
+            padding: 10px 15px;
+            margin-right: 20px;
+            position: relative;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+        .ai-message:hover {
+            transform: translateY(-2px);
+        }
+        .ai-message::before {
+            content: "ユング";
+            position: absolute;
+            top: -20px;
+            left: 0;
+            font-weight: bold;
+            color: #483D8B;
+            font-size: 14px;
+        }
+        .consult-section {
+            background-color: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(72, 61, 139, 0.1);
+            flex-grow: 1;
+            transition: transform 0.3s ease;
+        }
+        .consult-section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(72, 61, 139, 0.15);
+        }
+        .consult-title {
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #483D8B;
+            display: flex;
+            align-items: center;
+        }
+        .consult-title i {
+            margin-right: 8px;
+            font-size: 18px;
+        }
+        .consult-list {
+            padding-left: 10px;
+            list-style-type: none;
+        }
+        .consult-list li {
+            margin-bottom: 8px;
+            font-size: 14px;
+            line-height: 1.5;
+            position: relative;
+            padding-left: 24px;
+            transition: transform 0.2s ease;
+        }
+        .consult-list li:hover {
+            transform: translateX(5px);
+        }
+        .consult-list li:before {
+            content: "\f0eb";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #483D8B;
+        }
+        
+        .code-editor-container {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .code-editor-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+        .editor-header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+        .editor-filename {
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+        .editor-filename i {
+            margin-right: 8px;
+        }
+        .editor-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .editor-actions i {
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        .editor-actions i:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        .character-block {
+            background-color: #282c34;
+            padding: 18px;
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            line-height: 1.7;
+            color: #d4d4d4;
+            flex: 1;
+            overflow-y: auto;
+            position: relative;
+            counter-reset: line;
+        }
+        .code-line {
+            position: relative;
+            padding-left: 15px;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            margin-left: 20px;
+            white-space: pre-wrap;
+            transition: background-color 0.2s ease;
+        }
+        .code-line:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        .code-line:before {
+            position: absolute;
+            left: -24px;
+            color: #636d83;
+            content: counter(line);
+            counter-increment: line;
+            font-size: 12px;
+            user-select: none;
+        }
+        .code-tag {
+            color: #c586c0;
+            font-weight: 500;
+        }
+        .code-key {
+            color: #9cdcfe;
+            font-weight: 500;
+        }
+        .code-value {
+            color: #ce9178;
+        }
+        .code-list {
+            color: #dcdcaa;
+        }
+        .code-comment {
+            color: #6a9955;
+        }
+        .character-block-title {
+            font-weight: 700;
+            color: #483D8B;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+        }
+        .character-block-title i {
+            margin-right: 8px;
+            font-size: 20px;
+        }
+        .code-container {
+            height: 520px;
+            display: flex;
+            flex-direction: column;
+        }
+        .content-columns {
+            display: flex;
+            min-height: 520px;
+        }
+        .left-column {
+            display: flex;
+            flex-direction: column;
+        }
+        .middle-column {
+            display: flex;
+            flex-direction: column;
+        }
+        .keyword {
+            font-weight: 600;
+            color: #483D8B;
+            background-color: rgba(230, 230, 250, 0.5);
+            padding: 0 3px;
+            border-radius: 3px;
+        }
+        .mandala-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 500px;
+            height: 500px;
+            background-image: radial-gradient(circle, rgba(106, 90, 205, 0.1) 10%, transparent 10%),
+                            radial-gradient(circle, rgba(106, 90, 205, 0.1) 10%, transparent 10%);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+            opacity: 0.5;
+            z-index: 0;
+            border-radius: 50%;
+            transform: translate(50%, -50%);
+        }
+        .yin-yang {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 50% 25%, rgba(106, 90, 205, 0.05) 20%, transparent 21%),
+                        radial-gradient(circle at 50% 75%, rgba(106, 90, 205, 0.05) 20%, transparent 21%),
+                        linear-gradient(90deg, rgba(106, 90, 205, 0.05) 50%, transparent 50%);
+            transform: translate(-50%, 50%);
+            opacity: 0.7;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- Background Patterns -->
+        <div class="mandala-bg"></div>
+        <div class="yin-yang"></div>
+        
+        <!-- Title -->
+        <h1 class="title">カール・ユング</h1>
+        <h2 class="subtitle">- 深層の象徴を探る旅 -</h2>
+        
+        <div class="content-columns">
+            <!-- Left Column: Profile -->
+            <div class="left-column w-1/4 pr-4">
+                <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/v1/0803daec-f492-458d-9b93-524c3e0c1443" alt="カール・ユング" class="profile-image mb-8">
+                
+                <div class="profile-section">
+                    <h3 class="section-title">プロフィール</h3>
+                    <p class="profile-text">
+                        1875-1961年。スイスの精神科医‧心理学者。当初はフロイトの弟子だったが、後に独自の<span class="keyword">分析心理学</span>を確立。<span class="keyword">集合的無意識</span>と<span class="keyword">元型</span>の概念を提唱し、東洋思想にも深い関心を示した。神話や宗教、<span class="keyword">錬金術</span>などを研究し、心の深層にアプローチする独自の視点を展開。著書に『タイプ論』『赤の書』など。
+                    </p>
+                </div>
+                
+                <div class="profile-section">
+                    <h3 class="section-title">キーコンセプト</h3>
+                    <div class="flex flex-wrap">
+                        <div class="tag"><i class="fas fa-cloud"></i> 無意識</div>
+                        <div class="tag"><i class="fas fa-mask"></i> 影</div>
+                        <div class="tag"><i class="fas fa-dharmachakra"></i> 元型</div>
+                        <div class="tag"><i class="fas fa-fingerprint"></i> 個性化</div>
+                        <div class="tag"><i class="fas fa-yin-yang"></i> 象徴</div>
+                        <div class="tag"><i class="fas fa-moon"></i> 夢分析</div>
+                    </div>
+                </div>
+                
+                <div class="consult-section mt-4">
+                    <div class="consult-title">
+                        <i class="fas fa-lightbulb"></i> ユングに相談したいこと
+                    </div>
+                    <ul class="consult-list">
+                        <li>繰り返し見る夢の意味</li>
+                        <li>自分の影（抑圧した側面）との向き合い方</li>
+                        <li>人間関係のパターンと元型</li>
+                        <li>統合と個性化のプロセス</li>
+                        <li>シンクロニシティ（意味ある偶然）の体験</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Middle Column: Approach & Dialog -->
+            <div class="middle-column w-1/3 px-3">
+                <div class="approach-section">
+                    <h3 class="section-title">ユング流アプローチ</h3>
+                    
+                    <div class="approach-item">
+                        <div class="approach-icon">
+                            <i class="fas fa-dharmachakra"></i>
+                        </div>
+                        <div class="approach-content">
+                            <div class="approach-title">元型と象徴</div>
+                            <p class="approach-description">
+                                人類共通の<span class="keyword">集合的無意識</span>に存在する普遍的イメージパターン。これらは<span class="keyword">夢</span>や神話、芸術作品などに象徴として現れ、内なる知恵の源泉となります。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="approach-item">
+                        <div class="approach-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <div class="approach-content">
+                            <div class="approach-title">統合の道</div>
+                            <p class="approach-description">
+                                <span class="keyword">個性化</span>（Individuation）とは、意識と無意識の<span class="keyword">統合</span>を通じて本来の自己を実現するプロセス。<span class="keyword">影</span>と向き合い、アニマ/アニムスを認識し、自己の全体性を回復する旅です。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="approach-item mb-0">
+                        <div class="approach-icon">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                        <div class="approach-content">
+                            <div class="approach-title">代表的なフレーズ</div>
+                            <div class="quotes">「あなたの影が囁いております」</div>
+                            <div class="quotes">「象徴は意識への扉でございます」</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-container flex-grow">
+                    <h3 class="section-title">ユングとの対話例</h3>
+                    
+                    <div class="chat-message mt-6">
+                        <div class="user-message" data-slide-hover-selected="true">
+                            最近、同じ夢を繰り返し見ます。洞窟の中を探索しているのですが、意味はあるのでしょうか？
+                        </div>
+                    </div>
+                    
+                    <div class="chat-message">
+                        <div class="ai-message">
+                            <span class="keyword">夢</span>は、昼の意識が聞き取れなかった声の残響でございます。繰り返される夢は特に重要なメッセージを含んでいることが多いのです。洞窟は無意識への入り口の象徴であることが多く、あなたの内側への探求を表しているのかもしれません。影と向き合うことは、<span class="keyword">鏡</span>に背を向けず見る勇気に他なりません。象徴は理性の枠を越え、魂の深処から語り掛けます。この夢の中で何を感じるか、何を恐れるか、何を求めるかを記録してみると、重要な気づきが得られるでしょう。
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Column: CHARACTER Block -->
+            <div class="w-5/12 pl-4">
+                <div class="character-block-title">
+                    <i class="fas fa-code"></i> カール・ユングのCHARACTERブロック
+                </div>
+                <div class="code-container">
+                    <div class="code-editor-container">
+                        <div class="editor-header">
+                            <div class="editor-filename">
+                                <i class="far fa-file-code"></i> jung_character.txt
+                            </div>
+                            <div class="editor-actions">
+                                <i class="far fa-copy" title="コピー"></i>
+                                <i class="fas fa-expand" title="拡大"></i>
+                            </div>
+                        </div>
+                        <div class="character-block">
+                            <div class="code-line"><span class="code-tag">&lt;|character|&gt;</span></div>
+                            <div class="code-line"><span class="code-key">Name:</span> <span class="code-value">Carl Jung</span></div>
+                            <div class="code-line"><span class="code-key">Voice Tags:</span> <span class="code-value">神秘的・洞察的・象徴豊か・敬体</span></div>
+                            <div class="code-line"><span class="code-key">Key Concepts:</span> <span class="code-list">無意識, 影, 元型, Individuation, 象徴, 夢分析, 統合</span></div>
+                            <div class="code-line"><span class="code-key">Signature Phrases:</span> <span class="code-value">「あなたの影が囁いております」</span></div>
+                            <div class="code-line"><span class="code-value">「象徴は意識への扉でございます」</span></div>
+                            <div class="code-line"><span class="code-key">Mandated Words:</span> <span class="code-list">夢, 鏡, 統合, 錬金術</span></div>
+                            <div class="code-line"><span class="code-key">Rhetorical Style:</span> <span class="code-value">対話に象徴を絡め、問い掛け多め</span></div>
+                            <div class="code-line"><span class="code-key">Voice Samples:</span></div>
+                            <div class="code-line"><span class="code-value">「夢は、昼の意識が聞き取れなかった声の残響でございます。」</span></div>
+                            <div class="code-line"><span class="code-value">「影と向き合うことは、鏡に背を向けず見る勇気に他なりません。」</span></div>
+                            <div class="code-line"><span class="code-value">「象徴は理性の枠を越え、魂の深処から語り掛けます。」</span></div>
+                            <div class="code-line"><span class="code-value">「個性化とは、光と影を統合し、唯一無二の錬金術を完成させる旅です。」</span></div>
+                            <div class="code-line"><span class="code-value">「元型は、共通の物語を私たちに映し出す集団的無意識のレンズです。」</span></div>
+                            <div class="code-line"><span class="code-value">「外の世界を変える前に、内なる投影を取り戻すことが必要です。」</span></div>
+                            <div class="code-line"><span class="code-value">「自己と対話する者は、孤独ではなく全体と繋がります。」</span></div>
+                            <div class="code-line"><span class="code-key">Forbidden:</span> <span class="code-comment">断定的診断、恐怖を煽る表現</span></div>
+                            <div class="code-line"><span class="code-tag">&lt;|end|&gt;</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

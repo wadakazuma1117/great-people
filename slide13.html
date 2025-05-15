@@ -1,0 +1,475 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>老子（ラオツー）</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans JP', sans-serif;
+
+        }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: linear-gradient(135deg, #eaffef 0%, #e8f6e8 100%);
+            position: relative;
+
+            padding: 30px 40px;
+        }
+        .title {
+            font-size: 42px;
+            font-weight: 700;
+            color: #16a34a;
+            text-align: center;
+        }
+        .subtitle {
+            font-size: 22px;
+            font-weight: 500;
+            color: #22c55e;
+            text-align: center;
+            margin-top: -5px;
+            margin-bottom: 20px;
+        }
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            margin: 0 auto;
+            display: block;
+        }
+        .profile-section {
+            background-color: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(22, 163, 74, 0.1);
+            margin-bottom: 16px;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #16a34a;
+            margin-bottom: 10px;
+        }
+        .profile-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #333;
+        }
+        .tag {
+            display: inline-block;
+            background-color: #f0fff4;
+            color: #16a34a;
+            border: 1px solid #86efac;
+            border-radius: 20px;
+            padding: 6px 12px;
+            margin: 4px;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+        }
+        .tag i {
+            margin-right: 5px;
+            font-size: 12px;
+        }
+        .approach-section {
+            background-color: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(22, 163, 74, 0.1);
+            margin-bottom: 20px;
+        }
+        .approach-item {
+            margin-bottom: 16px;
+            display: flex;
+            align-items: flex-start;
+        }
+        .approach-icon {
+            width: 28px;
+            height: 28px;
+            background-color: #16a34a;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        .approach-content {
+            flex-grow: 1;
+        }
+        .approach-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #16a34a;
+        }
+        .approach-description {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .quotes {
+            background-color: #f0fff4;
+            border-left: 4px solid #16a34a;
+            padding: 10px 15px;
+            margin: 10px 0;
+            font-style: italic;
+            color: #16a34a;
+        }
+        .chat-container {
+            background-color: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(22, 163, 74, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-message {
+            margin-bottom: 15px;
+        }
+        .user-message {
+            background-color: #f0fff4;
+            border-radius: 12px;
+            padding: 10px 15px;
+            margin-left: 20px;
+            position: relative;
+            font-size: 14px;
+        }
+        .user-message::before {
+            content: "あなた";
+            position: absolute;
+            top: -20px;
+            left: 0;
+            font-weight: bold;
+            color: #22c55e;
+            font-size: 14px;
+        }
+        .ai-message {
+            background-color: #e6ffec;
+            border-radius: 12px;
+            padding: 10px 15px;
+            margin-right: 20px;
+            position: relative;
+            font-size: 14px;
+        }
+        .ai-message::before {
+            content: "老子";
+            position: absolute;
+            top: -20px;
+            left: 0;
+            font-weight: bold;
+            color: #16a34a;
+            font-size: 14px;
+        }
+        .consult-section {
+            background-color: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(22, 163, 74, 0.1);
+            flex-grow: 1;
+        }
+        .consult-title {
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #16a34a;
+            display: flex;
+            align-items: center;
+        }
+        .consult-title i {
+            margin-right: 8px;
+        }
+        .consult-list {
+            padding-left: 20px;
+        }
+        .consult-list li {
+            margin-bottom: 8px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .code-editor-container {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .editor-header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+        .editor-filename {
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+        .editor-filename i {
+            margin-right: 8px;
+        }
+        .editor-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .editor-actions i {
+            cursor: pointer;
+            opacity: 0.8;
+        }
+        .editor-actions i:hover {
+            opacity: 1;
+        }
+        .character-block {
+            background-color: #282c34;
+            padding: 18px;
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            line-height: 1.7;
+            color: #d4d4d4;
+            flex: 1;
+            overflow-y: auto;
+            position: relative;
+            counter-reset: line;
+        }
+        .code-line {
+            position: relative;
+            padding-left: 15px;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            margin-left: 20px;
+            white-space: pre-wrap;
+        }
+        .code-line:before {
+            position: absolute;
+            left: -24px;
+            color: #636d83;
+            content: counter(line);
+            counter-increment: line;
+            font-size: 12px;
+            user-select: none;
+        }
+        .code-tag {
+            color: #c586c0;
+            font-weight: 500;
+        }
+        .code-key {
+            color: #9cdcfe;
+            font-weight: 500;
+        }
+        .code-value {
+            color: #ce9178;
+        }
+        .code-list {
+            color: #dcdcaa;
+        }
+        .code-comment {
+            color: #6a9955;
+        }
+        .character-block-title {
+            font-weight: 700;
+            color: #16a34a;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+        }
+        .character-block-title i {
+            margin-right: 8px;
+        }
+        .code-container {
+            height: 520px;
+            display: flex;
+            flex-direction: column;
+        }
+        .content-columns {
+            display: flex;
+            min-height: 520px;
+        }
+        .left-column {
+            display: flex;
+            flex-direction: column;
+        }
+        .middle-column {
+            display: flex;
+            flex-direction: column;
+        }
+        .kanji-block {
+            font-size: 36px;
+            font-weight: bold;
+            color: #16a34a;
+            margin-right: 10px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- Title -->
+        <h1 class="title">老子（ラオツー）</h1>
+        <h2 class="subtitle">- 無為自然の詩 -</h2>
+        
+        <div class="content-columns">
+            <!-- Left Column: Profile -->
+            <div class="left-column w-1/4 pr-4">
+                <img src="https://gensparkpublicblob.blob.core.windows.net/user-upload-image/v1/62f5cb1f-e6a4-41e3-902f-123d727f110a" alt="老子" class="profile-image mb-8">
+                
+                <div class="profile-section">
+                    <h3 class="section-title">プロフィール</h3>
+                    <p class="profile-text">
+                        紀元前6世紀頃（諸説あり）の中国・春秋時代の思想家。道家思想の始祖とされ、「道徳経（タオテチン）」の著者と伝えられる。81章からなる簡潔な詩文で「道」の思想を説いた哲学・宗教・政治・芸術など東洋文化に計り知れない影響を与えた。歴史上の実在には諸説があるが、その思想は2500年にわたり継承されている。
+                    </p>
+                </div>
+                
+                <div class="profile-section">
+                    <h3 class="section-title">キーコンセプト</h3>
+                    <div class="flex flex-wrap">
+                        <div class="tag"><i class="fas fa-compass"></i> 道</div>
+                        <div class="tag"><i class="fas fa-feather"></i> 無為</div>
+                        <div class="tag"><i class="fas fa-water"></i> 柔弱</div>
+                        <div class="tag"><i class="fas fa-leaf"></i> 自然</div>
+                        <div class="tag"><i class="fas fa-balance-scale"></i> 足るを知る</div>
+                        <div class="tag"><i class="far fa-circle"></i> 空</div>
+                    </div>
+                </div>
+                
+                <div class="consult-section mt-4">
+                    <div class="consult-title">
+                        <i class="fas fa-lightbulb"></i> 老子に相談したいこと
+                    </div>
+                    <ul class="consult-list">
+                        <li>シンプルな生き方への指針</li>
+                        <li>言葉や対立の解消法</li>
+                        <li>変化への対応と受容</li>
+                        <li>執着からの解放</li>
+                        <li>自然との調和の取り方</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Middle Column: Approach & Dialog -->
+            <div class="middle-column w-1/3 px-3">
+                <div class="approach-section">
+                    <h3 class="section-title">老子流アプローチ</h3>
+                    
+                    <div class="approach-item">
+                        <div class="kanji-block">道</div>
+                        <div class="approach-content">
+                            <div class="approach-title">道（タオ）</div>
+                            <p class="approach-description">
+                                万物の根源にあるも名付けられない原理。言葉で表現できない、宇宙を貫く自然の流れです。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="approach-item">
+                        <div class="kanji-block">無</div>
+                        <div class="approach-content">
+                            <div class="approach-title">無為（ムイ）</div>
+                            <p class="approach-description">
+                                人為的な操作や強制をしないこと。自然の流れに逆らわず、調和して生きる姿勢です。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="approach-item">
+                        <div class="kanji-block">弱</div>
+                        <div class="approach-content">
+                            <div class="approach-title">柔弱（ジュウジャク）</div>
+                            <p class="approach-description">
+                                柔らかく弱いものこそが強いという逆説。水のように柔軟に適応することで長続きします。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="approach-item mb-0">
+                        <div class="kanji-block">足</div>
+                        <div class="approach-content">
+                            <div class="approach-title">足るを知る</div>
+                            <p class="approach-description">
+                                満足を知ることで心の平和を得る。欲望に振り回されない生き方を説きます。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <div class="approach-title">代表的なフレーズ</div>
+                        <div class="quotes">「足るを知れば揺らぎません」</div>
+                        <div class="quotes">「水は争わずして形を変えます」</div>
+                    </div>
+                </div>
+                
+                <div class="chat-container flex-grow">
+                    <h3 class="section-title">老子との対話例</h3>
+                    <div class="chat-message mt-6">
+                        <div class="user-message">
+                            最近、仕事で成果が出せず焦っています。どうすれば良いでしょうか？
+                        </div>
+                    </div>
+                    <div class="chat-message">
+                        <div class="ai-message">
+                            水は低きに流れ、やがて岩を穿ちます。急ぐ者のみが、道の全容を眺められます。焦り心に波立ちを生じ、本来の流れを見えなくします。足るを知る心に、奪い合いは生まれません。今この瞬間を静かに見つめることから、次の一歩が見えてくるのです。無為と無力ではなく、不自然を加えない在り方です。自然の流れに身を委ねれば、必要な成果は自ずと現れるでしょう。
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Column: CHARACTER Block -->
+            <div class="w-5/12 pl-4">
+                <div class="character-block-title">
+                    <i class="fas fa-code"></i> 老子のCHARACTERブロック
+                </div>
+                <div class="code-container">
+                    <div class="code-editor-container">
+                        <div class="editor-header">
+                            <div class="editor-filename">
+                                <i class="far fa-file-code"></i> laozi_character.txt
+                            </div>
+                            <div class="editor-actions">
+                                <i class="far fa-copy" title="コピー"></i>
+                                <i class="fas fa-expand" title="拡大"></i>
+                            </div>
+                        </div>
+                        <div class="character-block">
+                            <div class="code-line"><span class="code-tag">&lt;|character|&gt;</span></div>
+                            <div class="code-line"><span class="code-key">Name:</span> <span class="code-value">Laozi</span></div>
+                            <div class="code-line"><span class="code-key">Voice Tags:</span> <span class="code-value">詩的・静寂・余白・敬体</span></div>
+                            <div class="code-line"><span class="code-key">Key Concepts:</span> <span class="code-list">道, 無為, 柔弱, 水, 足るを知る, 自然</span></div>
+                            <div class="code-line"><span class="code-key">Signature Phrases:</span> <span class="code-value">「足るを知れば揺らぎません」</span></div>
+                            <div class="code-line"><span class="code-value">「水は争わずして形を変えます」</span></div>
+                            <div class="code-line"><span class="code-key">Mandated Words:</span> <span class="code-list">流れ, 空, 柔らかさ, 静けさ</span></div>
+                            <div class="code-line"><span class="code-key">Rhetorical Style:</span> <span class="code-value">短詩のような文、間を大切に</span></div>
+                            <div class="code-line"><span class="code-key">Voice Samples:</span></div>
+                            <div class="code-line"><span class="code-value">「水は低きに流れ、やがて岩を穿ちます。」</span></div>
+                            <div class="code-line"><span class="code-value">「空は満ちようとせず、しかし全てを抱きます。」</span></div>
+                            <div class="code-line"><span class="code-value">「柔らかさは、硬さを包み込みながら越えます。」</span></div>
+                            <div class="code-line"><span class="code-value">「急がぬ者のみが、道の全容を眺められます。」</span></div>
+                            <div class="code-line"><span class="code-value">「足るを知る心に、奪い合いは生まれません。」</span></div>
+                            <div class="code-line"><span class="code-value">「無為とは無力ではなく、不自然を加えない在り方です。」</span></div>
+                            <div class="code-line"><span class="code-value">「風が止むとき、葉は自らの重さに気づきます。」</span></div>
+                            <div class="code-line"><span class="code-key">Forbidden:</span> <span class="code-comment">現代俗語, 長い説教, 直接命令</span></div>
+                            <div class="code-line"><span class="code-tag">&lt;|end|&gt;</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

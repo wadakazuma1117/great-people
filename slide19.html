@@ -1,0 +1,575 @@
+
+<!DOCTYPE html>
+<html lang="ja"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>応用と実践</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans JP', sans-serif;
+  
+        }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: linear-gradient(135deg, #fce6ff 0%, #ffe1f9 100%);
+            position: relative;
+
+            padding: 30px 40px;
+        }
+        .title {
+            font-size: 42px;
+            font-weight: 700;
+            color: #8e24aa;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            font-size: 20px;
+            font-weight: 500;
+            color: #ab47bc;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #7b1fa2;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .section-title i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: flex-start;
+            position: relative;
+            overflow: hidden;
+        }
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-right: 15px;
+            font-size: 18px;
+        }
+        .card-content {
+            flex-grow: 1;
+        }
+        .card-title {
+            font-weight: 700;
+            font-size: 17px;
+            margin-bottom: 6px;
+            color: #333;
+        }
+        .card-description {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #555;
+        }
+        .step-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 14px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            display: flex;
+            position: relative;
+        }
+        .step-number {
+            width: 30px;
+            height: 30px;
+            min-width: 30px;
+            background-color: #9c27b0;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 15px;
+            font-size: 16px;
+        }
+        .step-content {
+            flex-grow: 1;
+        }
+        .step-title {
+            font-weight: 700;
+            font-size: 17px;
+            margin-bottom: 6px;
+            color: #333;
+        }
+        .step-description {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #555;
+        }
+        .section-container {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .customize-title {
+            font-weight: 700;
+            font-size: 18px;
+            color: #7b1fa2;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .customize-title i {
+            margin-right: 10px;
+        }
+        .customize-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex-grow: 1;
+        }
+        .customize-item {
+            display: flex;
+            align-items: flex-start;
+        }
+        .customize-icon {
+            width: 34px;
+            height: 34px;
+            min-width: 34px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-right: 12px;
+            font-size: 16px;
+        }
+        .customize-item-content {
+            flex-grow: 1;
+        }
+        .customize-item-title {
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 4px;
+            color: #333;
+        }
+        .customize-item-description {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #555;
+        }
+        .ideas-title {
+            font-weight: 700;
+            font-size: 18px;
+            color: #7b1fa2;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .ideas-title i {
+            margin-right: 10px;
+        }
+        .combo-title {
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        .combo-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: #f1e6ff;
+            color: #6a1b9a;
+            border-radius: 20px;
+            padding: 5px 12px;
+            margin: 4px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .combo-badge i {
+            margin-right: 5px;
+            font-size: 12px;
+        }
+        .counselors-title {
+            font-weight: 700;
+            font-size: 15px;
+            margin: 10px 0;
+            color: #333;
+        }
+        .counselors-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .counselor-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 8px;
+        }
+        .counselor-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .counselor-name {
+            font-size: 12px;
+            line-height: 1.2;
+        }
+        .final-message {
+            background-color: rgba(156, 39, 176, 0.08);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-top: auto;
+            margin-bottom: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .final-title {
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #7b1fa2;
+            display: flex;
+            align-items: center;
+        }
+        .final-title i {
+            margin-right: 8px;
+        }
+        .final-content {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #444;
+        }
+        .category-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-right: 4px;
+            color: white;
+        }
+        .equal-height {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .fill-height {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .mt-auto {
+            margin-top: auto;
+        }
+        .advice-box {
+            margin-top: auto;
+            background-color: #f9f4ff;
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px solid rgba(156, 39, 176, 0.2);
+        }
+    </style></head>
+<body>
+    <div class="slide-container">
+        <h1 class="title">応用と実践</h1>
+        <p class="subtitle">- 偉人カウンセラーたちの知恵を活かす -</p>
+        
+        <div class="flex">
+            <!-- Left Column: Applications -->
+            <div class="w-1/2 pr-3">
+                <h2 class="section-title">
+                    <i class="fas fa-lightbulb"></i>
+                    多彩な応用例
+                </h2>
+                
+                <!-- Card 1 -->
+                <div class="card">
+                    <div class="card-icon" style="background-color: #9c27b0;">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">悩み相談とアドバイス</h3>
+                        <p class="card-description">
+                            特定の偉人の視点から悩み事へのアドバイスを得られます。人間関係や仕事、自己成長などの相談に最適です。
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="card">
+                    <div class="card-icon" style="background-color: #673ab7;">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">思想の深い理解</h3>
+                        <p class="card-description">
+                            偉人の考え方や哲学をより深く理解できます。特定のコンセプトについて会話形式で掘り下げることが可能です。
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="card">
+                    <div class="card-icon" style="background-color: #e91e63;">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">心の癒しと対話</h3>
+                        <p class="card-description">
+                            亡くなった大切な人との対話を疑似体験できます。心の中にある言葉にならない感情を表現する助けになります。
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Card 4 -->
+                <div class="card">
+                    <div class="card-icon" style="background-color: #3f51b5;">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">視点転換の訓練</h3>
+                        <p class="card-description">
+                            異なる思考法や視点に触れることで、柔軟な思考力が養われます。カウンセラーや教育者の訓練にも役立ちます。
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Column: Steps -->
+            <div class="w-1/2 pl-3">
+                <h2 class="section-title">
+                    <i class="fas fa-shoe-prints"></i>
+                    実践ステップ
+                </h2>
+                
+                <!-- Step 1 -->
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 class="step-title">目的を明確にする</h3>
+                        <p class="step-description">
+                            何について相談したいのか、どんな視点が欲しいのかを明確にします。適切な偉人カウンセラーを選ぶ基準になります。
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 class="step-title">プロンプトを用意</h3>
+                        <p class="step-description">
+                            SYSTEMブロックと選んだ偉人のCHARACTERブロックをコピーします。このスライド資料から必要な部分をコピーできます。
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 class="step-title">AIチャットを開始</h3>
+                        <p class="step-description">
+                            ChatGPTやGeminiなどのAIチャットを開き、まずプロンプト全体を貼り付けます。新規セッションで始めるのがおすすめです。
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3 class="step-title">対話を楽しむ</h3>
+                        <p class="step-description">
+                            質問や悩みを入力し、選んだ偉人からの返答を受け取ります。本物の対話のように質問を深めていくことができます。
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Step 5 -->
+                <div class="step-card">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3 class="step-title">複数の視点を得る</h3>
+                        <p class="step-description">
+                            同じ質問を異なる偉人にも尋ねてみましょう。多角的な視点や異なるアプローチを比較できます。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="flex mt-4" style="height: 280px;">
+            <!-- Left: Ideas & Final -->
+            <div class="w-1/2 pr-3 h-full">
+                <div class="section-container" style="display: flex; flex-direction: column; height: 100%;">
+                    <div class="ideas-title">
+                        <i class="far fa-lightbulb"></i> 活用アイデア集
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h3 class="combo-title">偉人の組み合わせ例</h3>
+                        <p class="text-sm mb-2">複数の偉人に同じ質問をすることで、多角的な視点が得られます：</p>
+                        
+                        <div class="flex flex-wrap">
+                            <div class="combo-badge">
+                                <i class="fas fa-heart"></i> 人間関係の悩み
+                            </div>
+                            <div class="combo-badge">
+                                <i class="fas fa-user"></i> アドラー
+                            </div>
+                            <div class="combo-badge">
+                                <i class="fas fa-pray"></i> マザー・テレサ
+                            </div>
+                            <div class="combo-badge">
+                                <i class="fas fa-heart"></i> ルイーズ・ヘイ
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap mt-2">
+                            <div class="combo-badge">
+                                <i class="fas fa-brain"></i> 自己成長
+                            </div>
+                            <div class="combo-badge">
+                                <i class="fas fa-moon"></i> ユング
+                            </div>
+                            <div class="combo-badge">
+                                <i class="fas fa-hand-sparkles"></i> ベン＝シャハー
+                            </div>
+                            <div class="combo-badge">
+                                <i class="fas fa-brain"></i> エリクソン
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-wrap mt-2">
+                            <div class="combo-badge">
+                                <i class="fas fa-search"></i> 人生の意味
+                            </div>
+                            <div class="combo-badge">
+                                <i class="fas fa-mountain"></i> フランクル
+                            </div>
+                            <div class="combo-badge">
+                                <i class="fas fa-question"></i> ソクラテス
+                            </div>
+                            <div class="combo-badge">
+                                <i class="fas fa-leaf"></i> 老子
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="counselors-grid">
+                        <!-- Row 1 -->
+                        
+                        
+                        
+                        
+                        
+                        <!-- Row 2 -->
+                        
+                        
+                        
+                        
+                        
+                        <!-- Row 3 -->
+                        
+                        
+                        
+                        
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+            <!-- Right: Customization -->
+            <div class="w-1/2 pl-3 h-full">
+                <div class="section-container" style="display: flex; flex-direction: column; height: 100%;">
+                    <div class="customize-title">
+                        <i class="fas fa-tools"></i> カスタマイズのヒント
+                    </div>
+                    
+                    <div class="customize-content" style="flex: 1; display: flex; flex-direction: column;">
+                        <!-- Custom Item 1 -->
+                        <div class="customize-item">
+                            <div class="customize-icon" style="background-color: #9c27b0;">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="customize-item-content">
+                                <h3 class="customize-item-title">著作・言葉の追加</h3>
+                                <p class="customize-item-description">
+                                    「Voice Samples」に新しい言葉や著作物からの引用を追加できます。
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Custom Item 2 -->
+                        <div class="customize-item">
+                            <div class="customize-icon" style="background-color: #673ab7;">
+                                <i class="fas fa-volume-up"></i>
+                            </div>
+                            <div class="customize-item-content">
+                                <h3 class="customize-item-title">口調やトーンの調整</h3>
+                                <p class="customize-item-description">
+                                    「Voice Tags」を変更することで、より親しみやすい・厳格などの調整が可能です。
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Custom Item 3 -->
+                        <div class="customize-item">
+                            <div class="customize-icon" style="background-color: #3f51b5;">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <div class="customize-item-content">
+                                <h3 class="customize-item-title">オリジナルキャラクターの作成</h3>
+                                <p class="customize-item-description">
+                                    同じテンプレートを使って、家族や架空のキャラクターなど自分専用の対話相手を作れます。
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- カスタマイズプロセス（テキストベース） -->
+                        
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
