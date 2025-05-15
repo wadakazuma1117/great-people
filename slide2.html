@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>目次 - 歴史上の偉人があなたのカウンセラーになる魔法のAIプロンプト</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans JP', sans-serif;
+
+        }
+        .slide-container {
+            width: 1280px;
+            min-height: 720px;
+            background: linear-gradient(135deg, #f3e7ff 0%, #ffdbf2 100%);
+            position: relative;
+
+        }
+        .title {
+            font-size: 40px;
+            font-weight: 700;
+            color: #5a3a7e;
+            text-align: center;
+        }
+        .subtitle {
+            font-size: 24px;
+            font-weight: 700;
+            color: #5a3a7e;
+        }
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #6a4e95;
+            margin-bottom: 12px;
+        }
+        .toc-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            color: #5a3a7e;
+            font-size: 18px;
+        }
+        .card {
+            border-radius: 12px;
+            padding: 10px 16px;
+            margin-bottom: 12px;
+            color: #333;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .card-name {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        .card-description {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .circle-decoration {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+            z-index: 0;
+        }
+        .content {
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container flex flex-col p-10">
+        <!-- Decorative elements -->
+        <div class="circle-decoration" style="width: 300px; height: 300px; top: -100px; left: -100px; background-color: rgba(144, 104, 190, 0.1);"></div>
+        <div class="circle-decoration" style="width: 250px; height: 250px; bottom: -100px; right: -50px; background-color: rgba(144, 104, 190, 0.1);"></div>
+        
+        <!-- Main content -->
+        <div class="content w-full">
+            <div class="title mb-8">目次</div>
+            
+            <div class="flex">
+                <!-- Left column - Structure -->
+                <div class="w-1/3 pr-6">
+                    <div class="section-title text-purple-700">この資料の構成</div>
+                    
+                    <div class="toc-item">
+                        <i class="fas fa-magic text-purple-600 mr-3"></i>
+                        <span>AIプロンプトの魔法とは</span>
+                    </div>
+                    
+                    <div class="toc-item">
+                        <i class="fas fa-cubes text-purple-600 mr-3"></i>
+                        <span>システムブロック</span>
+                    </div>
+                    
+                    <div class="toc-item">
+                        <i class="fas fa-user-circle text-purple-600 mr-3"></i>
+                        <span>キャラクターブロック</span>
+                    </div>
+                    
+                    <div class="toc-item">
+                        <i class="fas fa-comments text-purple-600 mr-3"></i>
+                        <span>12人の偉人との対話方法</span>
+                    </div>
+                    
+                    <div class="toc-item">
+                        <i class="fas fa-lightbulb text-purple-600 mr-3"></i>
+                        <span>応用と実践</span>
+                    </div>
+                    
+                    <div class="toc-item">
+                        <i class="fas fa-heart text-purple-600 mr-3"></i>
+                        <span>おわりに</span>
+                    </div>
+                </div>
+                
+                <!-- Right column - 12 people -->
+                <div class="w-2/3">
+                    <div class="subtitle mb-4">12人の歴史上の偉人カウンセラー（存命中の人物も含む）</div>
+                    
+                    <div class="grid grid-cols-3 gap-3">
+                        <!-- Card 1 -->
+                        <div class="card" style="background-color: #e6f2ff; border-left: 4px solid #4a90e2;">
+                            <div class="card-name">ミルトン‧エリクソン</div>
+                            <div class="card-description">催眠メタファー</div>
+                        </div>
+                        
+                        <!-- Card 2 -->
+                        <div class="card" style="background-color: #e6f7ff; border-left: 4px solid #50b7e0;">
+                            <div class="card-name">アルフレッド‧アドラー</div>
+                            <div class="card-description">勇気づけの目的論</div>
+                        </div>
+                        
+                        <!-- Card 3 -->
+                        <div class="card" style="background-color: #e6fff7; border-left: 4px solid #50e0a0;">
+                            <div class="card-name">タル‧ベン＝シャハー</div>
+                            <div class="card-description">ポジティブ心理学</div>
+                        </div>
+                        
+                        <!-- Card 4 -->
+                        <div class="card" style="background-color: #e6ffea; border-left: 4px solid #78d237;">
+                            <div class="card-name">ヴィクトール‧フランクル</div>
+                            <div class="card-description">実存の意味</div>
+                        </div>
+                        
+                        <!-- Card 5 -->
+                        <div class="card" style="background-color: #fff9e6; border-left: 4px solid #f2c94c;">
+                            <div class="card-name">カール‧ユング</div>
+                            <div class="card-description">深層の象徴</div>
+                        </div>
+                        
+                        <!-- Card 6 -->
+                        <div class="card" style="background-color: #fff5e6; border-left: 4px solid #f2994a;">
+                            <div class="card-name">ソクラテス</div>
+                            <div class="card-description">鋭い問答</div>
+                        </div>
+                        
+                        <!-- Card 7 -->
+                        <div class="card" style="background-color: #ffebe6; border-left: 4px solid #eb5757;">
+                            <div class="card-name">老子（ラオツー）</div>
+                            <div class="card-description">無為自然の詩</div>
+                        </div>
+                        
+                        <!-- Card 8 -->
+                        <div class="card" style="background-color: #f9e6ff; border-left: 4px solid #bb6bd9;">
+                            <div class="card-name">バシャール（宇宙人）</div>
+                            <div class="card-description">ワクワク周波数</div>
+                        </div>
+                        
+                        <!-- Card 9 -->
+                        <div class="card" style="background-color: #e6e6ff; border-left: 4px solid #6b66d9;">
+                            <div class="card-name">エイブラハム（ヒックス）</div>
+                            <div class="card-description">引き寄せの波動</div>
+                        </div>
+                        
+                        <!-- Card 10 -->
+                        <div class="card" style="background-color: #ffe6f0; border-left: 4px solid #ff7eb6;">
+                            <div class="card-name">マザー‧テレサ</div>
+                            <div class="card-description">行動する愛</div>
+                        </div>
+                        
+                        <!-- Card 11 -->
+                        <div class="card" style="background-color: #ffecec; border-left: 4px solid #ff6b6b;">
+                            <div class="card-name">ルイーズ‧ヘイ</div>
+                            <div class="card-description">アファメーションの母</div>
+                        </div>
+                        
+                        <!-- Card 12 -->
+                        <div class="card" style="background-color: #e6faff; border-left: 4px solid #56ccf2;">
+                            <div class="card-name">ナイチンゲール</div>
+                            <div class="card-description">観察‧環境‧行動</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
