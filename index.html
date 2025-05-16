@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>歴史上の偉人があなたのカウンセラーになる魔法のAIプロンプト</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            /* 表紙画像に近い、暖色系のグラデーション */
+            background: linear-gradient(135deg, #fff0f3 0%, #ffe4e1 70%, #ffd1dc 100%);
+            color: #4A5568; /* 基本テキスト色 (濃いめのグレー) */
+            padding: 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+            -webkit-text-size-adjust: 100%;
+        }
+        .main-container {
+            width: 100%;
+            max-width: 980px; /* コンテンツの最大幅 */
+            margin: 1.5rem auto;
+            background-color: rgba(255, 255, 255, 0.97); /* 少し透明感のある白 */
+            padding: 2.5rem clamp(1rem, 5vw, 2.5rem);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(100, 100, 100, 0.1);
+        }
+        .cover-title-section {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #ffe4e1; /* 区切り線の色を背景に合わせる */
+        }
+        .cover-main-title {
+            font-size: clamp(1.75rem, 5vw, 2.5rem); /* 表紙タイトルに合わせて調整 */
+            font-weight: 700; /* PDF表紙は太め */
+            color: #333; /* 表紙のタイトル色に近い濃いグレー */
+            margin-bottom: 0.375rem;
+            line-height: 1.3;
+        }
+        .cover-sub-title {
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            font-weight: 500;
+            color: #555; /* 表紙のサブタイトル色に近いグレー */
+            margin-bottom: 1rem;
+        }
+        .author-name {
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+            color: #777; /* 表紙の著者名に近い薄めのグレー */
+            margin-top: 0.5rem;
+        }
+        .page-list-title { /* 「全ページへのリンク」のような案内 */
+            font-size: clamp(1.2rem, 3.8vw, 1.5rem);
+            font-weight: 600;
+            color: #4A5568; /* 濃いグレー */
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .toc-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* スマホでは常に1カラム */
+            gap: 0.875rem;
+        }
+        @media (min-width: 640px) { /* smサイズ以上 */
+            .toc-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 1.25rem;
+            }
+        }
+        .toc-item-card {
+            background-color: #fffafa; /* カード背景を非常に薄いピンクがかった白 */
+            border: 1px solid #ffe4e1; /* 枠線を背景に馴染む色に */
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            display: flex;
+            align-items: center;
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease-out;
+        }
+        .toc-item-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 12px rgba(100, 80, 80, 0.1); /* 少し赤みのある影 */
+            border-color: #ffcad4;
+        }
+        .toc-item-link {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        .item-icon-container {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            margin-right: 0.875rem;
+        }
+        .toc-page-indicator {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #888; /* ページ番号の色を調整 */
+            min-width: 28px;
+            text-align: right;
+            margin-right: 0.4rem;
+        }
+        .toc-icon {
+            font-size: 1rem;
+            color: #ff7f7f; /* アイコン色を暖色系に */
+        }
+        .item-title-container {
+            flex-grow: 1;
+        }
+        .item-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #5c5c5c; /* タイトル文字色 */
+            line-height: 1.4;
+        }
+        .toc-item-link:hover .item-title {
+            color: #d1455f; /* ホバー時のタイトル色 (暖色系) */
+        }
+        .item-description { /* PDFの目次にある偉人のサブテキスト用 */
+            font-size: 0.8rem;
+            color: #888;
+            line-height: 1.5;
+            margin-top: 0.1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="cover-title-section">
+            <h1 class="cover-main-title">歴史上の偉人があなたの<br class="md:hidden">カウンセラーになる魔法のAIプロンプト</h1>
+            <h2 class="cover-sub-title">12人の歴史上の偉人との対話を実現する完全ガイド</h2>
+            <p class="author-name">Kazuma Wada</p>
+        </div>
+
+
+        <div class="toc-grid">
+            <div class="toc-item-card">
+                <a href="slide1.html" class="toc-item-link">
+                    <div class="item-icon-container"><span class="toc-page-indicator">P.1</span><i class="fas fa-book-reader toc-icon"></i></div>
+                    <div class="item-title-container"><h3 class="item-title">表紙</h3></div>
+                </a>
+            </div>
+            <div class="toc-item-card">
+                <a href="slide2.html" class="toc-item-link">
+                    <div class="item-icon-container"><span class="toc-page-indicator">P.2</span><i class="fas fa-list-ul toc-icon"></i></div>
+                    <div class="item-title-container"><h3 class="item-title">目次</h3></div>
+                </a>
+            </div>
+            <div class="toc-item-card">
+                <a href="slide3.html" class="toc-item-link">
+                    <div class="item-icon-container"><span class="toc-page-indicator">P.3</span><i class="fas fa-magic toc-icon"></i></div>
+                    <div class="item-title-container"><h3 class="item-title">AIプロンプトの魔法とは</h3></div>
+                </a>
+            </div>
+            <div class="toc-item-card">
+                <a href="slide4.html" class="toc-item-link">
+                    <div class="item-icon-container"><span class="toc-page-indicator">P.4</span><i class="fas fa-cogs toc-icon"></i></div>
+                    <div class="item-title-container"><h3 class="item-title">コピペして使う「SYSTEMブロック」</h3></div>
+                </a>
+            </div>
+            <div class="toc-item-card">
+                <a href="slide5.html" class="toc-item-link">
+                    <div class="item-icon-container"><span class="toc-page-indicator">P.5</span><i class="fas fa-user-circle toc-icon"></i></div>
+                    <div class="item-title-container"><h3 class="item-title">1人ひとり違う「CHARACTERブロック」</h3></div>
+                </a>
+            </div>
+            <div class="toc-item-card">
+                <a href="slide6.html" class="toc-item-link">
+                    <div class="item-icon-container"><span class="toc-page-indicator">P.6</span><i class="fas fa-comments toc-icon"></i></div>
+                    <div class="item-title-container"><h3 class="item-title">偉人との対話方法</h3></div>
+                </a>
+            </div>
+            <div class="toc-item-card">
+                <a href="slide7.html" class="toc-item-link">
+                    <div class="item-icon-container"><span class="toc-page-indicator">P.7</span><i class="fas fa-brain toc-icon"></i></div>
+                    <div class="item-title-container">
+                        <h3 class="item-title">ミルトン・エリクソン</h3>
+                        <p class="item-description">- 催眠メタファーの巨匠 -</p>
+                    </div>
+                </a>
+            </div>
+            <div class="toc-item-card">
+                <a href="slide8.html" class="toc-item-link">
+                    <div class="item-icon-container"><span class="toc-page-indicator">P.8</span><i class="fas fa-users toc-icon"></i></div>
+                    <div class="item-title-container">
+                        <h3 class="item-title">アルフレッド・アドラー</h3>
+                        <p class="item-description">- 勇気づけの目的論 -</p>
+                    </div>
+                </a>
+            </div>
+            <div class="toc-item-card">
+                <a href="slide9.html" class="toc-item-link">
+                    <div class="item-icon-container"><span class="toc-page-indicator">P.9</span><i class="fas fa-smile-beam toc-icon"></i></div>
+                    <div class="item-title-container">
+                        <h3 class="item-title">タル・ベン＝シャハー</h3>
+                        <p class="item-description">- ポジティブ心理学の実践者 -</p>
+                    </div>
+                </a>
+            </div>
+            <div class="toc-item-card">
+                <a href="slide10.html" class="toc-item-link">
+                    <div class="item-icon-container"><span class="toc-page-indicator">P.10</span><i class="fas fa-mountain toc-icon"></i></div>
+                    <div class="item-title-container">
+                        <h3 class="item-title">ヴィクトール・フランクル</h3>
+                        <p class="item-description">- 実存の意味を見出す道 -</p>
+                    </div>
+                </a>
+            </div>
+            <div class="toc-item-card">
+                <a href="slide11.html" class="toc-item-link">
+                    <div class="item-icon-container"><span class="toc-page-indicator">P.11</span><i class="fas fa-moon toc-icon"></i></div>
+                    <div class="item-title-container">
+                        <h3 class="item-title">カール・ユング</h3>
+                        <p class="item-description">- 深層の象徴を探る旅 -</p>
+                    </div>
+                </a>
+            </div>
+            <div class="toc-item-card">
+                <a href="slide12.html" class="toc-item-link">
+                    <div class="item-icon-container"><span class="toc-page-indicator">P.12</span><i class="fas fa-question-circle toc-icon"></i></div>
+                    <div class="item-title-container">
+                        <h3 class="item-title">ソクラテス</h3>
+                        <p class="item-description">- 鋭い問答の哲学者 -</p>
+                    </div>
+                </a>
+            </div>
+            <div class="toc-item-card">
+                <a href="slide13.html" class="toc-item-link">
+                    <div class="item-icon-container"><span class="toc-page-indicator">P.13</span><i class="fas fa-leaf toc-icon"></i></div>
+                    <div class="item-title-container">
+                        <h3 class="item-title">老子（ラオツー）</h3>
+                        <p class="item-description">- 無為自然の詩 -</p>
+                    </div>
+                </a>
+            </div>
+            <div class="toc-item-card">
+                <a href="slide14.html" class="toc-item-link">
+                    <div class="item-icon-container"><span class="toc-page-indicator">P.14</span><i class="fas fa-star toc-icon"></i></div>
+                    <div class="item-title-container">
+                        <h3 class="item-title">バシャール（宇宙人）</h3>
+                        <p class="item-description">- ワクワク周波数の教え -</p>
+                    </div>
+                </a>
+            </div>
+            <div class="toc-item-card">
+                <a href="slide15.html" class="toc-item-link">
+                    <div class="item-icon-container"><span class="toc-page-indicator">P.15</span><i class="fas fa-infinity toc-icon"></i></div>
+                    <div class="item-title-container">
+                        <h3 class="item-title">エイブラハム（ヒックス）</h3>
+                        <p class="item-description">- 引き寄せの波動 -</p>
+                    </div>
+                </a>
+            </div>
+            <div class="toc-item-card">
+                <a href="slide16.html" class="toc-item-link">
+                    <div class="item-icon-container"><span class="toc-page-indicator">P.16</span><i class="fas fa-praying-hands toc-icon"></i></div>
+                    <div class="item-title-container">
+                        <h3 class="item-title">マザー・テレサ</h3>
+                        <p class="item-description">- 行動する愛 -</p>
+                    </div>
+                </a>
+            </div>
+            <div class="toc-item-card">
+                <a href="slide17.html" class="toc-item-link">
+                    <div class="item-icon-container"><span class="toc-page-indicator">P.17</span><i class="fas fa-hand-holding-heart toc-icon"></i></div>
+                    <div class="item-title-container">
+                        <h3 class="item-title">ルイーズ・ヘイ</h3>
+                        <p class="item-description">- アファメーションの母 -</p>
+                    </div>
+                </a>
+            </div>
+            <div class="toc-item-card">
+                <a href="slide18.html" class="toc-item-link">
+                    <div class="item-icon-container"><span class="toc-page-indicator">P.18</span><i class="fas fa-notes-medical toc-icon"></i></div>
+                    <div class="item-title-container">
+                        <h3 class="item-title">フローレンス・ナイチンゲール</h3>
+                        <p class="item-description">- 観察・環境・行動 -</p>
+                    </div>
+                </a>
+            </div>
+            <div class="toc-item-card">
+                <a href="slide19.html" class="toc-item-link">
+                    <div class="item-icon-container"><span class="toc-page-indicator">P.19</span><i class="fas fa-cogs toc-icon"></i></div>
+                    <div class="item-title-container"><h3 class="item-title">応用と実践</h3></div>
+                </a>
+            </div>
+            <div class="toc-item-card">
+                <a href="slide20.html" class="toc-item-link">
+                    <div class="item-icon-container"><span class="toc-page-indicator">P.20</span><i class="fas fa-flag-checkered toc-icon"></i></div>
+                    <div class="item-title-container"><h3 class="item-title">おわりに</h3></div>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
